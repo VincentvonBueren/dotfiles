@@ -1,0 +1,11 @@
+{
+    "suggest.maxCompleteItemCount": 20,
+    "eslint.filetypes": [
+		"javascript",
+		"typescript",
+		"typescriptreact",
+		"javascriptreact"
+    ],
+    "eslint.enable": true ,
+    "java.errors.incompleteClasspath.severity": "ignore"
+}
