@@ -14,7 +14,7 @@ if !filereadable(plugpath)
 endif
 
 
-call plug#begin('~/AppData/Local/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 "Coc Intellisense installation
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}

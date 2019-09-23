@@ -1,5 +1,5 @@
 scriptencoding utf-8
-source ~/AppData/Local/nvim/plugins.vim
+source ~/.config/nvim/plugins.vim
 
 set nocompatible
 filetype plugin on
@@ -8,8 +8,8 @@ syntax on
 set number
 set clipboard=unnamed
 
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=4
+set shiftwidth=4
 set nowrap
 
 "Switching between buffers
@@ -24,7 +24,7 @@ set guicursor+=i:ver100-iCursor
 set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait10
 
-let g:python3_host_prog = 'C:\Users\18vvo\AppData\Local\Programs\Python\Python37\python.exe'
+let g:python3_host_prog = '/usr/bin/python3'
 
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
@@ -36,6 +36,107 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 "NerdTree Configuration
 
 nnoremap NT :NERDTree<cr>
+
+try 
+" Custom options for Denite
+"   auto_resize             - Auto resize the Denite window height automatically.
+"   prompt                  - Customize denite prompt
+"   direction               - Specify Denite window direction as directly below current pane
+"   winminheight            - Specify min height for Denite window
+"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
+"   prompt_highlight        - Specify color of prompt
+"   highlight_matched_char  - Matched characters highlight
+"   highlight_matched_range - matched range highlight
+let s:denite_options = {'default' : {
+\ 'split': 'floating',
+\ 'start_filter': 1,
+\ 'auto_resize': 1,
+\ 'source_names': 'short',
+\ 'prompt': 'λ:',
+\ 'statusline': 0,
+\ 'winrow': 1,
+\ 'vertical_preview': 1
+\ }}
+ 
+ 
+" Loop through denite options and enable them
+function! s:profile(opts) abort
+  for l:fname in keys(a:opts)
+    for l:dopt in keys(a:opts[l:fname])
+      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
+    endfor
+  endfor
+endfunction
+ 
+ 
+call s:profile(s:denite_options)
+catch
+  echo 'Denite not installed. It should work after running :PlugInstall'
+endtry
+ 
+" === Denite shorcuts === "
+"   ;         - Browser currently open buffers
+"   <leader>t - Browse list of files in current directory
+"   <leader>g - Search current directory for occurences of given term and close window if no results
+"   <leader>j - Search current directory for occurences of word under cursor
+nmap ; :Denite buffer<CR>
+" Option+O
+nmap <A-o>  :DeniteProjectDir file/rec<CR>
+" Option F
+nnoremap <A-f> :<C-u>Denite grep:. -no-empty<CR>
+" Option j
+nnoremap <A-j>  :<C-u>DeniteCursorWord grep:.<CR>
+ 
+" Define mappings while in 'filter' mode
+"   <C-o>         - Switch to normal mode inside of search results
+"   <Esc>         - Exit denite window in any mode
+"   <CR>          - Open currently selected file in any mode
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o>
+  \ <Plug>(denite_filter_quit)
+  inoremap <silent><buffer><expr> <c-t>
+  \ denite#do_map('do_action', 'tabopen')
+  inoremap <silent><buffer><expr> <c-v>
+  \ denite#do_map('do_action', 'vsplit')
+  inoremap <silent><buffer><expr> <c-h>
+  \ denite#do_map('do_action', 'split')
+  inoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  inoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+endfunction
+ 
+" Define mappings while in denite window
+"   <CR>        - Opens currently selected file
+"   q or <Esc>  - Quit Denite window
+"   d           - Delete currenly selected file
+"   p           - Preview currently selected file
+"   <C-o> or i  - Switch to insert mode inside of filter prompt
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <c-v>
+  \ denite#do_map('do_action', 'vsplit')
+  nnoremap <silent><buffer><expr> <c-h>
+  \ denite#do_map('do_action', 'split')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <C-o>
+  \ denite#do_map('open_filter_buffer')
+endfunction
+
 
 "Coc Configuration
 set updatetime=300
@@ -131,6 +232,10 @@ let g:airline_theme='challenger_deep'
 
 set guifont=Hack\ NF:h16
 set encoding=utf8
+
+
+let g:vimwiki_list = [{'path': '~/Workspace/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 "Devicons setup
 "let g:airline_powerline_fonts = 1
