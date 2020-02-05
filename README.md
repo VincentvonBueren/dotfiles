@@ -22,3 +22,4 @@ and MacOS systems
 - [ ] Create bash installation scripts
 - [ ] CRON job to periodically update this repo based on updates to my own profile or init.vim
 - [ ] sub repo for neovim
+- [ ] Test this in a docker file to make sure it works for linux 
