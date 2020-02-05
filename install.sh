@@ -10,7 +10,8 @@ echo "Installation Script to setup your system"
 # General for both #
 ####################
 mkdir ~/built
-
+cp bash/bashrc ~/.bashrc
+cp /bash/profile ~/.profile
 
 ####################
 # linux specific   #
@@ -18,9 +19,8 @@ mkdir ~/built
 # curl, wget, git, docker, kubernetes
 apt-get update
 
-## Build Essentials
-
-apt-get install build-essentials
+## Build Essential
+apt-get install -y build-essential git curl wget ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
 
 #####################
 # Mac OS specific   #
@@ -33,34 +33,44 @@ apt-get install build-essentials
 #####################
 # NVM* | LTS NodeJS #
 #####################
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+nvm install -lts
 
 #####################
 # PyEnv* | Python   #
 #####################
-
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv 
+pyenv install 3.7.4
 #####################
 # Lua 
 # Lua Rocks
 #####################
+apt-get install -y lua luarocks
+#####################
+# Rust 
+# Rustup
+#####################
+curl https://sh.rustup.rs -sSf | sh
+rustup install stable
+
+#####################
+# Java JDK
+#####################
+apt install openjdk-11-jre-headless
 
 #####################
 # Scala
 # SBT
 #####################
-
-#####################
-# Rust 
-# Rustup
-#####################
-
-#####################
-# Java JDK
-#####################
+echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
+sudo apt-get update
+sudo apt-get install sbt
 
 #####################
 # Exa 
 #####################
-
+cargo install exa
 #####################
 # Neovim*
 #####################
@@ -70,10 +80,3 @@ chdir ~/built/neovim
 git checkout stable
 
 # Need to install prerequisites
-
-
-
-# Bashrc and profile
-
-cp bash/bashrc ~/.bashrc
-cp /bash/profile ~/.profile
