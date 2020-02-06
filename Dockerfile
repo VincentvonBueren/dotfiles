@@ -13,8 +13,8 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | 
     curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
 
 # [ ] Setup of Python
-RUN nvm install --lts && \
-    pyenv install 3.7.4
+# RUN nvm install --lts && \
+#    pyenv install 3.7.4
 
 # Neovim installation
 

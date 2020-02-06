@@ -24,3 +24,15 @@ and MacOS systems
 - [ ] sub repo for neovim
     - [ ] Need to at least update to match current situation
 - [ ] Test this in a docker file to make sure it works for linux 
+- [ ] Add a verification script      
+      
+## Testing procedure
+
+1. First build the docker file
+
+```bash
+sudo docker build -t {insert name} .
+```
+
+2. Open up an interactive terminal in docker in order to make sure everything is there
+
