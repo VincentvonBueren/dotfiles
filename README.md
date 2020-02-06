@@ -4,11 +4,11 @@ This repository contains all of the seutp scripts that I can use to configure a 
 are being setup include the following.
 
 - Neovim
-- Python and PyEnv
-- Nodejs and NVM
-- Lua and Luarocks
-- Rust, Cargo, and Rustup
-- Bash (rc and profile)
+- Python and ~PyEnv~
+- Nodejs and ~NVM~
+- ~Lua and Luarocks~
+- ~Rust, Cargo, and Rustup~
+- ~Bash (rc and profile)~
 - Alacritty
 - Exa
 - scala and sbt
@@ -18,8 +18,9 @@ and MacOS systems
 
 ## To do
 
-- [ ] Consolidate all setup files here
-- [ ] Create bash installation scripts
+- [x] Consolidate all setup files here
+- [x] Create bash installation scripts
 - [ ] CRON job to periodically update this repo based on updates to my own profile or init.vim
 - [ ] sub repo for neovim
+    - [ ] Need to at least update to match current situation
 - [ ] Test this in a docker file to make sure it works for linux 

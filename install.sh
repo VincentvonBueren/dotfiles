@@ -45,13 +45,12 @@ pyenv install 3.7.4
 # Lua 
 # Lua Rocks
 #####################
-apt-get install -y lua luarocks
+apt-get install -y lua5.1 luarocks
 #####################
 # Rust 
 # Rustup
 #####################
-curl https://sh.rustup.rs -sSf | sh
-rustup install stable
+curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable
 
 #####################
 # Java JDK
