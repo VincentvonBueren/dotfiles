@@ -34,13 +34,11 @@ apt-get install -y build-essential git curl wget ninja-build gettext libtool lib
 # NVM* | LTS NodeJS #
 #####################
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
-nvm install -lts
 
 #####################
 # PyEnv* | Python   #
 #####################
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv 
-pyenv install 3.7.4
 #####################
 # Lua 
 # Lua Rocks
@@ -69,6 +67,9 @@ sudo apt-get install sbt
 #####################
 # Exa 
 #####################
+exec bash
+nvm install -lts
+pyenv install 3.7.4
 cargo install exa
 #####################
 # Neovim*
@@ -77,5 +78,8 @@ cargo install exa
 git clone https://github.com/neovim/neovim.git ~/built/neovim
 chdir ~/built/neovim
 git checkout stable
-
 # Need to install prerequisites
+sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+# actual installation
+make CMAKE_BUILD_TYPE=Release
+make install

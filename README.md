@@ -3,7 +3,7 @@
 This repository contains all of the seutp scripts that I can use to configure a new computer or workspace. The programs that
 are being setup include the following.
 
-- Neovim
+- ~Neovim~
 - Python and ~PyEnv~
 - Nodejs and ~NVM~
 - ~Lua and Luarocks~
@@ -11,7 +11,7 @@ are being setup include the following.
 - ~Bash (rc and profile)~
 - Alacritty
 - Exa
-- scala and sbt
+- ~scala and sbt~
 
 It will also contains scripts that will be used to differentiate between linux
 and MacOS systems
