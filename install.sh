@@ -32,7 +32,7 @@ fi
 ####################
 mkdir ~/built
 cp bash/bashrc ~/.bashrc
-cp /bash/profile ~/.profile
+cp bash/profile ~/.profile
 
 ####################
 # linux specific   #
@@ -47,7 +47,6 @@ cp /bash/profile ~/.profile
 # Xcode command line tools
 # Brew
 # Cask
-
 
 #####################
 # NVM* | LTS NodeJS #
