@@ -22,6 +22,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim'
 
+Plug 'easymotion/vim-easymotion'
 
 " === Git Plugins === "
 Plug 'tpope/vim-fugitive'
@@ -36,13 +37,18 @@ Plug 'arakashic/chromatica.nvim'
 " Javascript Syntax Highlighting
 Plug 'othree/yajs.vim'
 
+" Scala Stuff
+Plug 'derekwyatt/vim-scala'
+
 " === UI === "
 " File explorer
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 
 " Colorscheme
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
+Plug 'mhartington/oceanic-next'
+Plug 'altercation/vim-colors-solarized'
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

@@ -3,13 +3,18 @@ source ~/.config/nvim/plugins.vim
 
 set nocompatible
 filetype plugin on
-syntax on
+syntax enable
 
 set number
-set clipboard=unnamed
+set clipboard+=unnamedplus
 
+set tabstop=4 
 set softtabstop=4
 set shiftwidth=4
+set expandtab
+set autoindent
+set copyindent
+
 set nowrap
 
 "Switching between buffers
@@ -17,14 +22,14 @@ nnoremap <silent> gn :bn<cr>
 nnoremap <silent> gp :bp<cr>
 nnoremap <silent> gd :bd<cr>
 
-highlight Cursor guifg=white guibg=black
-highlight iCursor guifg=white guibg=steelblue
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait10
+" highlight Cursor guifg=white guibg=black
+" highlight iCursor guifg=white guibg=steelblue
+" set guicursor=n-v-c:block-Cursor
+" set guicursor+=i:ver100-iCursor
+" set guicursor+=n-v-c:blinkon0
+" set guicursor+=i:blinkwait10
 
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = '/home/vineeth/.pyenv/versions/3.7.4/bin/python'
 
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
@@ -33,11 +38,37 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " ============================================================================ "
 " ===                           Plugin Setup                               === "
 " ============================================================================ "
-"NerdTree Configuration
-
-nnoremap NT :NERDTree<cr>
-
 try 
+" === Denite setup ==="
+
+" Use ripgrep for searching current directory for files
+" By default, ripgrep will respect rules in .gitignore
+"   --files: Print each file that would be searched (but don't search)
+"   --glob:  Include or exclues files for searching that match the given glob
+"            (aka ignore .git files)
+"
+call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+
+" Use ripgrep in place of 'grep'
+call denite#custom#var('grep', 'command', ['rg'])
+
+" Custom options for ripgrep
+"   --vimgrep:  Show results with every match on it's own line
+"   --hidden:   Search hidden directories and files
+"   --heading:  Show the file name above clusters of matches from each file
+"   --S:        Search case insensitively if the pattern is all lowercase
+call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep','--heading', '-S'])
+
+" Recommended defaults for ripgrep via Denite docs
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+" Remove date from buffer list
+"call denite#custom#var('buffer', 'date_format', '')
+
+
 " Custom options for Denite
 "   auto_resize             - Auto resize the Denite window height automatically.
 "   prompt                  - Customize denite prompt
@@ -79,13 +110,20 @@ endtry
 "   <leader>t - Browse list of files in current directory
 "   <leader>g - Search current directory for occurences of given term and close window if no results
 "   <leader>j - Search current directory for occurences of word under cursor
+
+"execute "set <A-o>=<Esc>[;O"
+"execute "set <A-S-o>=<Esc>[;O;S"
+"execute "set <A-f>=<Esc>[;F"
+"execute "set <A-j>=<Esc>[;J"
+
 nmap ; :Denite buffer<CR>
-" Option+O
-nmap <A-o>  :DeniteProjectDir file/rec<CR>
-" Option F
-nnoremap <A-f> :<C-u>Denite grep:. -no-empty<CR>
-" Option j
-nnoremap <A-j>  :<C-u>DeniteCursorWord grep:.<CR>
+" Alt+O
+nmap [;O :Denite file/rec<CR>
+" Alt+F
+nmap [;O;S :DeniteProjectDir file/rec<CR>
+nnoremap [;F :<C-u>Denite grep:. -no-empty<CR>
+" Alt+j
+nnoremap [;J  :<C-u>DeniteCursorWord grep:.<CR>
  
 " Define mappings while in 'filter' mode
 "   <C-o>         - Switch to normal mode inside of search results
@@ -201,6 +239,9 @@ let g:vimwiki_folding='list'
 let g:tigris#enabled = 1
 let g:tigris#on_the_fly_enabled = 1
 let g:tigris#delay = 500
+
+" Scala Syntax highlighting
+au BufRead,BufNewfile *.sbt set filetype=scala
 " ============================================================================ "
 " ===                                UI                                    === "
 " ============================================================================ "
@@ -211,16 +252,21 @@ endif
 
 set background=dark
 
-colorscheme challenger_deep
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+
+" let g:solarized_termcolors=256
+
+colorscheme OceanicNext
 
 
 " Vim wiki Header Colors
-hi VimwikiHeader1 guifg=#FF8080
-hi VimwikiHeader2 guifg=#91DDFF
-hi VimwikiHeader3 guifg=#95FFA4
-hi VimwikiHeader4 guifg=#C991E1
-hi VimwikiHeader5 guifg=#FF5458
-hi VimwikiHeader6 guifg=#65B2FF
+" hi VimwikiHeader1 guifg=#FF8080
+" hi VimwikiHeader2 guifg=#91DDFF
+" hi VimwikiHeader3 guifg=#95FFA4
+" hi VimwikiHeader4 guifg=#C991E1
+" hi VimwikiHeader5 guifg=#FF5458
+" hi VimwikiHeader6 guifg=#65B2FF
 
 " Bracket Matching Colors
 hi MatchParen guibg=grey
@@ -228,14 +274,15 @@ hi MatchParen guibg=grey
 
 
 "Vim airline theme
-let g:airline_theme='challenger_deep'
+let g:airline_theme='oceanicnext'
 
-set guifont=Hack\ NF:h16
+set guifont=FuraMono\ NF:h16
 set encoding=utf8
 
 
 let g:vimwiki_list = [{'path': '~/Workspace/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+set mouse=a
 
 "Devicons setup
 "let g:airline_powerline_fonts = 1
