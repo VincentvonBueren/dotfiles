@@ -4,13 +4,13 @@ This repository contains all of the seutp scripts that I can use to configure a 
 are being setup include the following.
 
 - ~Neovim~
-- Python and ~PyEnv~
-- Nodejs and ~NVM~
+- ~Python and PyEnv~
+- ~Nodejs and NVM~
 - ~Lua and Luarocks~
 - ~Rust, Cargo, and Rustup~
 - ~Bash (rc and profile)~
-- Alacritty
-- Exa
+- ~Alacritty~
+- ~Exa~
 - ~scala and sbt~
 
 It will also contains scripts that will be used to differentiate between linux
@@ -24,7 +24,6 @@ and MacOS systems
 - [ ] sub repo for neovim
     - [ ] Need to at least update to match current situation
 - [ ] Test this in a docker file to make sure it works for linux 
-- [ ] Add a verification script      
       
 ## Testing procedure
 
