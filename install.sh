@@ -15,7 +15,8 @@ if [[ "$OSTYPE" == "linx-gnu"]]; then
         wget \
         ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip \
         openjdk-11-jre-headless \
-        sbt \
+        sbt \ 
+        fzf \
         lua5.1 luarocks
 elif [[ "$OSTYPE" == "darwin"]]; then
     xcode-select --install
@@ -26,6 +27,7 @@ elif [[ "$OSTYPE" == "darwin"]]; then
     brew cask install java
     brew install scala sbt
     brew install rustup
+    brew install fzf
 fi
 ####################
 # General for both #
