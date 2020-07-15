@@ -50,4 +50,15 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+function rgvim{
+    file=$(rg -il $1 | fzf -0 -1 --ansi --preview "cat {} | rg $1 --context 3")
+    nvim +/$1 $file
+}
+
+
+# WSL Commands
+alias love="love.exe"
+alias explorer="explorer.exe"
+
+alias weather="curl wttr.in"
 
