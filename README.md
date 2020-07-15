@@ -18,13 +18,8 @@ and MacOS systems
 
 ## To do
 
-- [x] Consolidate all setup files here
-- [x] Create bash installation scripts
-- [ ] CRON job to periodically update this repo based on updates to my own profile or init.vim
-- [ ] sub repo for neovim
-    - [ ] Need to at least update to match current situation
-- [ ] Test this in a docker file to make sure it works for linux 
-      
+Recreate the ide setup from https://github.com/ls12styler/ide/blob/master/Dockerfile
+
 ## Testing procedure
 
 1. First build the docker file

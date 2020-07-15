@@ -8,7 +8,7 @@ RUN apk update && apk add -U --no-cache \
     ca-certificates openssl coreutils python2 make gcc c++ libgcc \
     linux headers grep util-linux binutils findutil
 
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 
 ENV HOME /home/me
 
@@ -25,3 +25,5 @@ RUN nvim +PlugInstall +qall >> /dev/null
 # RUN pip install docker-compose
 
 WORKDIR ${HOME}
+
+CMD ["/bin/entrypoint.sh"]
