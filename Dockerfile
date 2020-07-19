@@ -6,11 +6,23 @@ RUN apk update && apk add -U --no-cache \
     curl less \
     docker py-pip su-exec \
     ca-certificates openssl coreutils python2 make gcc c++ libgcc \
-    linux headers grep util-linux binutils findutil
+    linux headers grep util-linux binutils findutil rustup
 
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 
-ENV HOME /home/me
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+ENV HOME      /home/me
+
+ENV ${HOME}/.nvm # or ~/.nvm , depending
+ENV NODE_VERSION 0.10.33
+
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
+
 
 COPY bash/bashrc ${HOME}/.bashrc
 COPY neovim/ ${HOME}/.config/nvim/
