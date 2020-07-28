@@ -15,8 +15,6 @@ if [[ "$OSTYPE" == "linx-gnu"]]; then
         wget \
         ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip \
         openjdk-11-jre-headless \
-        sbt \ 
-        fzf \
         lua5.1 luarocks
 elif [[ "$OSTYPE" == "darwin"]]; then
     xcode-select --install
@@ -67,7 +65,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable
 # Exa 
 #####################
 exec bash
-nvm install -lts
+nvm install --lts
 pyenv install 3.7.4
 cargo install exa
 #####################
@@ -80,3 +78,15 @@ git checkout stable
 # actual installation
 make CMAKE_BUILD_TYPE=Release
 make install
+#####################
+# SBT*
+#####################
+echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
+sudo apt-get update
+sudo apt-get install sbt
+#####################
+# Utility
+#####################
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
