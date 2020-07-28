@@ -6,31 +6,30 @@ filetype plugin on
 syntax enable
 
 set number
-set clipboard+=unnamedplus
 
 set tabstop=4 
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set copyindent
 
 set nowrap
+
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
 
 "Switching between buffers
 nnoremap <silent> gn :bn<cr>
 nnoremap <silent> gp :bp<cr>
 nnoremap <silent> gd :bd<cr>
 
-" highlight Cursor guifg=white guibg=black
-" highlight iCursor guifg=white guibg=steelblue
-" set guicursor=n-v-c:block-Cursor
-" set guicursor+=i:ver100-iCursor
-" set guicursor+=n-v-c:blinkon0
-" set guicursor+=i:blinkwait10
-
-let g:python3_host_prog = '/home/vineeth/.pyenv/versions/3.7.4/bin/python'
-
+let g:python3_host_prog = '/home/vineeth/.pyenv/versions/3.8.2/bin/python'
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
@@ -64,10 +63,6 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-
-" Remove date from buffer list
-"call denite#custom#var('buffer', 'date_format', '')
-
 
 " Custom options for Denite
 "   auto_resize             - Auto resize the Denite window height automatically.
@@ -224,12 +219,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Vim Wiki 
-"set foldmethod=syntax
-let g:vimwiki_folding='list'
-
 " ============================================================================ "
-" ===                        Syntax Highlighting                           === "
+" ===                        Language Specific                             === "
 " ============================================================================ "
 
 " Python Semshi
@@ -239,6 +230,8 @@ let g:vimwiki_folding='list'
 let g:tigris#enabled = 1
 let g:tigris#on_the_fly_enabled = 1
 let g:tigris#delay = 500
+
+autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Scala Syntax highlighting
 au BufRead,BufNewfile *.sbt set filetype=scala
@@ -255,23 +248,10 @@ set background=dark
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 
-" let g:solarized_termcolors=256
-
 colorscheme OceanicNext
-
-
-" Vim wiki Header Colors
-" hi VimwikiHeader1 guifg=#FF8080
-" hi VimwikiHeader2 guifg=#91DDFF
-" hi VimwikiHeader3 guifg=#95FFA4
-" hi VimwikiHeader4 guifg=#C991E1
-" hi VimwikiHeader5 guifg=#FF5458
-" hi VimwikiHeader6 guifg=#65B2FF
 
 " Bracket Matching Colors
 hi MatchParen guibg=grey
-
-
 
 "Vim airline theme
 let g:airline_theme='oceanicnext'
@@ -279,18 +259,4 @@ let g:airline_theme='oceanicnext'
 set guifont=FuraMono\ NF:h16
 set encoding=utf8
 
-
-let g:vimwiki_list = [{'path': '~/Workspace/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 set mouse=a
-
-"Devicons setup
-"let g:airline_powerline_fonts = 1
-"let g:webdevicons_enable = 1
-"let g:webdevicons_enable_nerdtree = 1
-"let g:webdevicons_enable_denite = 1
-"let g:webdevicons_enable_airline_tabline = 1
-
-"if exists("g:loaded_webdevicons")
-" call webdevicons#refresh()
-"endif
