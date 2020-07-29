@@ -31,8 +31,6 @@ nnoremap <silent> gd :bd<cr>
 
 let g:python3_host_prog = '/home/vineeth/.pyenv/versions/3.8.2/bin/python'
 
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " ============================================================================ "
 " ===                           Plugin Setup                               === "
@@ -223,9 +221,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " ===                        Language Specific                             === "
 " ============================================================================ "
 
-" Python Semshi
-" C Chromatica
-
 " JS Tigris
 let g:tigris#enabled = 1
 let g:tigris#on_the_fly_enabled = 1
@@ -255,6 +250,9 @@ hi MatchParen guibg=grey
 
 "Vim airline theme
 let g:airline_theme='oceanicnext'
+
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 set guifont=FuraMono\ NF:h16
 set encoding=utf8

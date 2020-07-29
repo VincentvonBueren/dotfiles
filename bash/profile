@@ -26,39 +26,37 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Add built to the path
-
-export PATH="$HOME/built:$PATH"
-
+# Rust Stuff
 export PATH="$HOME/.cargo/bin:$PATH"
+source $HOME/.cargo/env
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias ls="exa"
 alias la="exa -a"
 alias ..="cd .."
 
-alias wd="cd /mnt/c/Users/Vineeth\ Voruganti/"
-# eval "$(starship init bash)"
+eval "$(starship init bash)"
 
+# NVM Setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Pyenv 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-function rgvim{
-    file=$(rg -il $1 | fzf -0 -1 --ansi --preview "cat {} | rg $1 --context 3")
-    nvim +/$1 $file
+# rip grep to vim
+function rgvim {
+   file=$(rg -il $1 | fzf -0 -1 --ansi --preview "cat {} | rg $1 --context 3")
+   nvim +/$1 $file
 }
-
 
 # WSL Commands
 alias love="love.exe"
 alias explorer="explorer.exe"
-
 alias weather="curl wttr.in"
-
+alias wd="cd /mnt/c/Users/18vvo/"

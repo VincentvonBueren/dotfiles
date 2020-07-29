@@ -62,3 +62,11 @@ function ide() {
 }
 ```
 
+## TODO
+
+- [ ] Learn VimScript and actually make a nice init.vim
+- [ ] Learn bash and make a nice bashrc and profile
+- [ ] Make a command for `clip.exe` that removes CR
+- [ ] Make copy commands that utilize VIM buffers in WSL
+- [ ] Implement this or make your own https://github.com/nvim-lua/telescope.nvim
+- [ ] Make documentation to view all your custom vim shortcuts
