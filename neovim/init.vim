@@ -15,6 +15,8 @@ set autoindent
 
 set nowrap
 
+" set clipboard+=unnamedplus " for MacOS
+
 " WSL yank support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
 if executable(s:clip)
@@ -31,12 +33,55 @@ nnoremap <silent> gd :bd<cr>
 
 let g:python3_host_prog = '/home/vineeth/.pyenv/versions/3.8.2/bin/python'
 
+" ============================================================================ "
+" ===                        Language Specific                             === "
+" ============================================================================ "
+
+" JS Tigris
+let g:tigris#enabled = 1
+let g:tigris#on_the_fly_enabled = 1
+let g:tigris#delay = 500
+
+autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 expandtab
+
+" Scala Syntax highlighting
+au BufRead,BufNewfile *.sbt set filetype=scala
+" ============================================================================ "
+" ===                                UI                                    === "
+" ============================================================================ "
+
+if has('nvim') || has('termguicolors')
+  set termguicolors
+endif
+
+set background=dark
+
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+
+colorscheme OceanicNext
+
+" Bracket Matching Colors
+hi MatchParen guibg=grey
+
+"Vim airline theme
+let g:airline_theme='oceanicnext'
+
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
+set guifont=FuraMono\ NF:h16
+set encoding=utf8
+
+set mouse=a
 
 " ============================================================================ "
 " ===                           Plugin Setup                               === "
 " ============================================================================ "
 try 
+"====================="
 " === Denite setup ==="
+"====================="
 
 " Use ripgrep for searching current directory for files
 " By default, ripgrep will respect rules in .gitignore
@@ -217,44 +262,4 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" ============================================================================ "
-" ===                        Language Specific                             === "
-" ============================================================================ "
 
-" JS Tigris
-let g:tigris#enabled = 1
-let g:tigris#on_the_fly_enabled = 1
-let g:tigris#delay = 500
-
-autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 expandtab
-
-" Scala Syntax highlighting
-au BufRead,BufNewfile *.sbt set filetype=scala
-" ============================================================================ "
-" ===                                UI                                    === "
-" ============================================================================ "
-
-if has('nvim') || has('termguicolors')
-  set termguicolors
-endif
-
-set background=dark
-
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-
-colorscheme OceanicNext
-
-" Bracket Matching Colors
-hi MatchParen guibg=grey
-
-"Vim airline theme
-let g:airline_theme='oceanicnext'
-
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
-set guifont=FuraMono\ NF:h16
-set encoding=utf8
-
-set mouse=a

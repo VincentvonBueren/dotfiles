@@ -9,21 +9,20 @@ RUN apk update && apk add -U --no-cache \
     linux headers grep util-linux binutils findutil rustup \
     luajit luarocks
 
-# NVM Setup
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
 ENV HOME      /home/me
-
-ENV ${HOME}/.nvm # or ~/.nvm , depending
+# Setup for NVM
+ENV NVM_DIR ${HOME}/.nvm 
 ENV NODE_VERSION 0.10.33
-
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install --lts \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+# Setup Bash 
 COPY bash/bashrc ${HOME}/.bashrc
 COPY neovim/ ${HOME}/.config/nvim/
 COPY bash/tmux.conf ${HOME}/.tmux.conf
@@ -38,7 +37,7 @@ RUN nvim +PlugInstall +qall >> /dev/null
 
 COPY gitconfig ${HOME}/.gitconfig
 
-COPY entroypoint.sh /bin/entrypoint.sh
+COPY entrypoint.sh /bin/entrypoint.sh
 
 WORKDIR ${HOME}
 

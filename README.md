@@ -3,15 +3,15 @@
 This repository contains all of the seutp scripts that I can use to configure a new computer or workspace. The programs that
 are being setup include the following.
 
-- ~Neovim~
-- ~Python and PyEnv~
-- ~Nodejs and NVM~
-- ~Lua and Luarocks~
-- ~Rust, Cargo, and Rustup~
-- ~Bash (rc and profile)~
-- ~Alacritty~
-- ~Exa~
-- ~scala and sbt~
+- Neovim
+- Python and PyEnv
+- Nodejs and NVM
+- Lua and Luarocks
+- Rust, Cargo, and Rustup
+- Bash (rc and profile)
+- Alacritty
+- Exa
+- scala and sbt
 
 It will also contains scripts that will be used to differentiate between linux
 and MacOS systems
@@ -70,3 +70,7 @@ function ide() {
 - [ ] Make copy commands that utilize VIM buffers in WSL
 - [ ] Implement this or make your own https://github.com/nvim-lua/telescope.nvim
 - [ ] Make documentation to view all your custom vim shortcuts
+
+## Dockerfile
+
+- [ ] Test
