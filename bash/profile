@@ -33,6 +33,7 @@ source $HOME/.cargo/env
 
 alias ls="exa"
 alias la="exa -a"
+alias ll="exa -l"
 alias ..="cd .."
 
 eval "$(starship init bash)"
