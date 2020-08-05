@@ -46,6 +46,14 @@ sudo dpkg -i ripgrep_11.0.2_amd64.deb
 # Xcode command line tools
 # Brew
 # Cask
+#####################
+# WSL Specific #
+#####################
+# win32yank so that clipboard works on neovim
+curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+chmod +x /tmp/win32yank.exe
+sudo mv /tmp/win32yank.exe /usr/local/bin
 
 #####################
 # NVM* | LTS NodeJS #

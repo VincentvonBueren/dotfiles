@@ -15,16 +15,10 @@ set autoindent
 
 set nowrap
 
-" set clipboard+=unnamedplus " for MacOS
-
-" WSL yank support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-    augroup END
-endif
+" For MacOS and WSL 
+" Note for WSL make sure that win32yank is installed and on the path
+" https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+set clipboard+=unnamedplus
 
 "Switching between buffers
 nnoremap <silent> gn :bn<cr>
