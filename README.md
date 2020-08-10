@@ -58,7 +58,7 @@ function ide() {
   -e HELM_HOME="/path/to/.helm" \
   --name $CONTAINER_NAME \
   --net host \
-  ls12styler/ide:latest
+  marshmalon/ide:latest
 }
 ```
 
@@ -66,11 +66,9 @@ function ide() {
 
 - [ ] Learn VimScript and actually make a nice init.vim
 - [ ] Learn bash and make a nice bashrc and profile
-- [ ] Make a command for `clip.exe` that removes CR
-- [ ] Make copy commands that utilize VIM buffers in WSL
 - [ ] Implement this or make your own https://github.com/nvim-lua/telescope.nvim
 - [ ] Make documentation to view all your custom vim shortcuts
 
 ## Dockerfile
 
-- [ ] Test
+- [ ] Test dockerfile to see if it builds and runs properly
