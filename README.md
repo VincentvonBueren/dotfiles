@@ -3,7 +3,7 @@
 This repository contains all of the seutp scripts that I can use to configure a new computer or workspace. The programs that
 are being setup include the following.
 
-- Neovim
+- Neovim 0.5.0 (Including Lua API)
 - Python and PyEnv
 - Nodejs and NVM
 - Lua and Luarocks
@@ -61,14 +61,3 @@ function ide() {
   marshmalon/ide:latest
 }
 ```
-
-## TODO
-
-- [ ] Learn VimScript and actually make a nice init.vim
-- [ ] Learn bash and make a nice bashrc and profile
-- [ ] Implement this or make your own https://github.com/nvim-lua/telescope.nvim
-- [ ] Make documentation to view all your custom vim shortcuts
-
-## Dockerfile
-
-- [ ] Test dockerfile to see if it builds and runs properly
