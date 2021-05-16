@@ -9,8 +9,9 @@ lspconfig.ccls.setup {
         clang = {
             excludeArgs = { "-frounding-math"};
         };
-    }
+    },
+    on_attach=require'completion'.on_attach
 }
 
-lspconfig.tsserver.setup{} -- TypeScript and JavaScript Language Server
-lspconfig.pyright.setup{}  -- Python Language Server
+lspconfig.tsserver.setup{on_attach=require'completion'.on_attach} -- TypeScript and JavaScript Language Server
+lspconfig.pyright.setup{on_attach=require'completion'.on_attach}  -- Python Language Server

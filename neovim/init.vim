@@ -55,6 +55,12 @@ nnoremap 😊 <cmd>Telescope find_files<cr>
 nnoremap ;  <cmd>Telescope buffers<cr>
 nnoremap 📁 <cmd>Telescope live_grep<cr>
 
+" Completion Setup -- can enable following line if you want it to work on ever
+" extension
+" autocmd BufEnter * lua require'completion'.on_attach()
+
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
 " ============================================================================ "
 " ===                                UI                                    === "
