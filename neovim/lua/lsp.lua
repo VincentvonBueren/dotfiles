@@ -1,6 +1,9 @@
 local lspconfig = require'lspconfig'
 local coq = require'coq'
 
+-- Autoformat the buffer on write using the language server definition
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
 lspconfig.ccls.setup {
     coq.lsp_ensure_capabilities,
     init_options = {

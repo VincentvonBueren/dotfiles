@@ -1,11 +1,8 @@
 scriptencoding utf-8
-" source ~/.config/nvim/plugins.vim
 
-" lua require('plugins')
-
-set nocompatible
-filetype plugin on
-syntax enable
+" default in neovim 
+" filetype plugin on
+" syntax enable
 
 set number
 
@@ -26,7 +23,7 @@ nnoremap <silent> gp :bp<cr>
 nnoremap <silent> gd :bd<cr>
 
 let g:coq_settings = { 'auto_start': 'shut-up' }
-" let g:python3_host_prog = '/home/vineeth/.pyenv/versions/3.8.2/bin/python'
+let g:python3_host_prog = '/Users/vineeth/.config/nvim/venv/bin/python'
 
 " ============================================================================ "
 " ===                           Plugin Setup                               === "
@@ -37,11 +34,22 @@ require('plugins')
 
 -- Tree Sitter
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = { "c", "go", "python", "bash", "css", "html", "javascript", "json", "lua", "typescript", "html", "dockerfile", "vim" },
     highlight = {
         enable = true,
     },
-
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+        },
+    },
+    indent = {
+        enable = true
+    }
 }
 
 -- Lualine 
@@ -63,6 +71,12 @@ require("indent_blankline").setup {
 
 require("trouble").setup {}
 
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.vale,
+    },  
+})
+
 EOF
 
 " Telescope Setup
@@ -72,8 +86,8 @@ nnoremap ƒ <cmd>Telescope live_grep<cr>
 
 " Trouble Setup
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle lsp_document_diagnostics<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
@@ -104,5 +118,4 @@ colorscheme tokyonight
 hi MatchParen guibg=grey
 
 set encoding=utf8
-
 set mouse=a
