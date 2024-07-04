@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local mappings = {
       g = {
         d = { vim.lsp.buf.definition, "Go to definition" },
+        l = { vim.diagnostic.open_float, "Open diagnostic float" },
       },
       K = { vim.lsp.buf.hover, "Show hover information" },
       ["<leader>"] = {
