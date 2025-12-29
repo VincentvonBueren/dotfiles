@@ -52,6 +52,13 @@ return {
             section = "Actions",
           },
           {
+            name = "File Explorer",
+            action = function()
+              vim.cmd("Neotree toggle")
+            end,
+            section = "Actions",
+          },
+          {
             name = "Recent files",
             action = function()
               require("telescope.builtin").oldfiles()
