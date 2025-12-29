@@ -52,7 +52,7 @@ return {
             section = "Actions",
           },
           {
-            name = "File Explorer",
+            name = "Explorer",
             action = function()
               vim.cmd("Neotree toggle")
             end,
